@@ -222,6 +222,7 @@ local function gh(repo) return 'https://github.com/' .. repo end
 ---@type table<string, vim.lsp.Config>
 local servers = {
   stylua = {},
+  vtsls = {},
   lua_ls = {
     on_init = function(client)
       client.server_capabilities.documentFormattingProvider = false
