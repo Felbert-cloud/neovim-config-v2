@@ -177,6 +177,9 @@ do
   -- instead raise a dialog asking if you wish to save the current file(s)
   -- See `:help 'confirm'`
   vim.o.confirm = true
+
+  -- All modes use a block cursor (insert mode looks like normal mode)
+  vim.opt.guicursor = 'a:block'
 end
 
 -- ============================================================
@@ -223,6 +226,10 @@ local function gh(repo) return 'https://github.com/' .. repo end
 local servers = {
   stylua = {},
   vtsls = {},
+  postgres_language_server = {
+    cmd = { 'postgres-language-server', 'lsp-proxy' },
+    filetypes = { 'sql' },
+  },
   lua_ls = {
     on_init = function(client)
       client.server_capabilities.documentFormattingProvider = false
@@ -291,11 +298,12 @@ require('lazy').setup({
 
   -- colorscheme
   {
-    'folke/tokyonight.nvim',
-    opts = { styles = { comments = { italic = false } } },
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    opts = { styles = { italic = false } },
     config = function(_, opts)
-      require('tokyonight').setup(opts)
-      vim.cmd.colorscheme 'tokyonight-night'
+      require('rose-pine').setup(opts)
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 
@@ -356,7 +364,7 @@ require('lazy').setup({
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     dependencies = { 'mason-org/mason.nvim' },
-    opts = { ensure_installed = vim.tbl_keys(servers) },
+    opts = { ensure_installed = { 'stylua', 'vtsls', 'postgres-language-server', 'lua-language-server' } },
   },
 
   -- LuaSnip (snippets)
