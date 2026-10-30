@@ -8,7 +8,7 @@ return {
 
     ai99.setup {
       provider = ai99.Providers.OpenCodeProvider,
-      model = 'opencode/mimo-v2.5-free',
+      model = 'opencode/glm-5.3-flash-free',
       completion = {
         source = 'opencode',
       },

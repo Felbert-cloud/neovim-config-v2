@@ -263,7 +263,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require('lazy').setup {
   -- guess-indent
   'NMAC427/guess-indent.nvim',
 
@@ -290,6 +290,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>x', group = 'Diagnostics' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
@@ -300,9 +301,55 @@ require('lazy').setup({
   {
     'rose-pine/neovim',
     name = 'rose-pine',
-    opts = { styles = { italic = false } },
-    config = function(_, opts)
-      require('rose-pine').setup(opts)
+    priority = 1000,
+    config = function()
+      require('rose-pine').setup {
+        variant = 'auto',
+        dark_variant = 'main',
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+
+        enable = {
+          terminal = true,
+          legacy_highlights = true,
+          migrations = true,
+        },
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = false,
+        },
+
+        groups = {
+          border = 'muted',
+          link = 'iris',
+          panel = 'surface',
+
+          error = 'love',
+          hint = 'iris',
+          info = 'foam',
+          note = 'pine',
+          todo = 'rose',
+          warn = 'gold',
+
+          git_add = 'foam',
+          git_change = 'rose',
+          git_delete = 'love',
+          git_dirty = 'rose',
+          git_ignore = 'muted',
+          git_merge = 'iris',
+          git_rename = 'pine',
+          git_stage = 'iris',
+          git_unstage = 'pine',
+          git_untracked = 'subtle',
+
+          add = 'iris',
+          change = 'rose',
+          delete = 'love',
+        },
+      }
+
       vim.cmd.colorscheme 'rose-pine'
     end,
   },
@@ -349,7 +396,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'ui-select')
     end,
   },
-  vim.fn.executable('make') == 1 and {
+  vim.fn.executable 'make' == 1 and {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
   } or nil,
@@ -394,7 +441,7 @@ require('lazy').setup({
 
   -- Import all specs from lua/custom/plugins/*.lua
   { import = 'custom.plugins' },
-})
+}
 
 -- Enable LSP servers
 for name, server in pairs(servers) do

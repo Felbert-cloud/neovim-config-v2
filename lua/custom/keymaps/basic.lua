@@ -29,8 +29,8 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save Neovim' })
 vim.keymap.set('n', '<leader>e', '<cmd>Explore<CR>', { desc = 'Open File' })
 
 -- Window splits
-vim.keymap.set('n', '<leader>ws', '<cmd>sp<CR>', { desc = 'Horizontal split' })
-vim.keymap.set('n', '<leader>wv', '<cmd>vs<CR>', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>bh', '<cmd>sp<CR>', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>bv', '<cmd>vs<CR>', { desc = 'Vertical split' })
 
 -- netrw: h to go up, l to open
 vim.api.nvim_create_autocmd('FileType', {
@@ -43,9 +43,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Opencode toggle
-vim.keymap.set('n', '<leader>oo', function()
-  require('opencode').toggle()
-end, { desc = 'Open opencode' })
+vim.keymap.set('n', '<leader>oo', function() require('opencode').toggle() end, { desc = 'Open opencode' })
 
 -- Format buffer
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })

@@ -1,0 +1,81 @@
+<Context>
+You receive a selection in neovim that you need to replace with new code.
+The selection's contents may contain notes, incorporate the notes every time if there are some.
+consider the context of the selection and what you are suppose to be implementing
+<SELECTION_LOCATION>
+range(point(1,1),point(17,2))
+</SELECTION_LOCATION>
+<SELECTION_CONTENT>
+return {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies = {
+    { 'tpope/vim-dadbod', lazy = true },
+    { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+  },
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+    -- Your DBUI configuration
+    vim.g.db_ui_use_nerd_fonts = 1
+  end,
+}
+</SELECTION_CONTENT>
+<FILE_CONTAINING_SELECTION>
+return {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies = {
+    { 'tpope/vim-dadbod', lazy = true },
+    { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+  },
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+    -- Your DBUI configuration
+    vim.g.db_ui_use_nerd_fonts = 1
+  end,
+}
+</FILE_CONTAINING_SELECTION>
+
+</Context>
+<Prompt>
+can you add a keymap make no conflic on my current keymap.
+</Prompt>
+
+<Location><File>/home/yarte/.config/nvim/lua/custom/plugins/dadbod.lua</File><Function>range(point(1,1),point(17,2))</Function></Location>
+<FunctionText>return {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies = {
+    { 'tpope/vim-dadbod', lazy = true },
+    { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+  },
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+    -- Your DBUI configuration
+    vim.g.db_ui_use_nerd_fonts = 1
+  end,
+}</FunctionText>
+<TEMP_FILE>./tmp/99-8306</TEMP_FILE>
+<MustObey>
+NEVER alter any file other than TEMP_FILE.
+never provide the requested changes as conversational output. Return only the code.
+ONLY provide requested changes by writing the change to TEMP_FILE
+
+never attempt to read TEMP_FILE.
+It is purely for output.
+Previous contents, which may not exist, can be written over without worry
+After writing TEMP_FILE once you should be done.  Be done and end the session.
+
+</MustObey>
