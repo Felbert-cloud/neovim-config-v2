@@ -28,6 +28,9 @@ vim.keymap.set('n', '<leader>L', '<cmd>LspRestart<CR>', { desc = 'Restart LSP' }
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save Neovim' })
 vim.keymap.set('n', '<leader>e', '<cmd>Explore<CR>', { desc = 'Open File' })
 
+-- Show diagnostics for the current line in a floating window
+vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float { focus = false } end, { desc = 'Show diagnostic in float' })
+
 -- Window splits
 vim.keymap.set('n', '<leader>bh', '<cmd>sp<CR>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '<leader>bv', '<cmd>vs<CR>', { desc = 'Vertical split' })
